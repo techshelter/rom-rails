@@ -49,7 +49,9 @@ module ROM
         end
 
         def default_configuration
-          if rails6?
+          if rails7?
+            configurations.find_db_config(env).configuration_hash
+          elsif rails6?
             configurations.default_hash(env)
           else
             configurations.fetch(env)
@@ -81,7 +83,11 @@ module ROM
         private
 
         def rails6?
-          ::ActiveRecord::VERSION::MAJOR >= 8
+          ::ActiveRecord::VERSION::MAJOR >= 6
+        end
+
+        def rails7?
+          ::ActiveRecord::VERSION::MAJOR >= 7
         end
       end
     end
