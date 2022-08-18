@@ -81,7 +81,7 @@ module ROM
         private
 
         def rails6?
-          ::ActiveRecord::VERSION::MAJOR >= 6
+          ::ActiveRecord::VERSION::MAJOR >= 8
         end
       end
     end
