@@ -39,7 +39,14 @@ module ROM
         def call
           specs = { default: build(default_configuration.symbolize_keys) }
 
-          if rails6?
+          if rails7?
+            # configurations.configs_for(env_name: env).each do |config|
+            #   raise build(config.configuration_hash.symbolize_keys).inspect
+            #   raise config.inspect
+            #   specs[config.spec_name.to_sym] = build(config.config.symbolize_keys)
+            # end
+            specs
+          elsif rails6?
             configurations.configs_for(env_name: env).each do |config|
               specs[config.spec_name.to_sym] = build(config.config.symbolize_keys)
             end
